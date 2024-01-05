@@ -27,7 +27,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 
   .mat-mdc-tab-body.mat-mdc-tab-body-active{
-    padding-top: 4rem;
+    padding-top: 5rem;
     padding-bottom: 4rem;
   }
   .mat-mdc-tab:not(.mdc-tab--stacked){

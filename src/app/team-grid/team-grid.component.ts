@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, WritableSignal, computed, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 export interface PeriodicElement {
@@ -37,6 +37,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class TeamGridComponent {
   readonly test = true;
+  @Input()
+    set formation(value: string) {
+      console.log('ss')
+      this.count.set(value)
+  }
+  count: WritableSignal<string> = signal('');
+
   displayedColumns: string[] = ['position', 'name', 'points', 'assists'];
-  dataSource = ELEMENT_DATA;
+  dataSource = computed(() => {
+    if(this.count() === 'Hex') {
+      return ELEMENT_DATA.map(el => ({...el, position:'Hd'}))
+    }else if(this.count() === 'Horizontal Stack'){
+      return ELEMENT_DATA.map((el, index) =>
+      ({...el, position: index < 6 ? 'Hd' : 'Ct' }))
+    }else if(this.count() === 'Vert Stack'){
+      return ELEMENT_DATA.map((el, index) =>
+      ({...el, position: index < 4 ? 'Hd' : 'Ct' }))
+    }
+    return ELEMENT_DATA
+  });
 }

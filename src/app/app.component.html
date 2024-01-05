@@ -1,12 +1,11 @@
-
 <div class="header">
-    <mat-icon >settings</mat-icon>
+  <mat-icon>settings</mat-icon>
 
   <div>
     <h4>My team</h4>
     <h5>Liga Przyjaciół Frisbee</h5>
   </div>
-  <mat-icon >info</mat-icon>
+  <mat-icon>info</mat-icon>
 
 </div>
 <mat-tab-group class="app-header">
@@ -17,17 +16,21 @@
         <span class="label">My team</span>
       </div>
     </ng-template>
-    <mat-form-field>
-      <mat-label>Cars</mat-label>
-      <select matNativeControl required>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-    </mat-form-field>
+    <div class="formation-container">
+      <h5>choose formation for your team:</h5>
+      <mat-form-field>
+        <mat-select [formControl]="formation" matNativeControl required>
+          @for(formation of formations; track formation) {
+          <mat-option [value]="formation">{{formation}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <h4>Players</h4>
-    <app-team-grid></app-team-grid>
+    @if (formation.value) {
+      <app-team-grid [formation]="formation.value"></app-team-grid>
+    }
   </mat-tab>
   <mat-tab label="Players">
     <ng-template mat-tab-label>

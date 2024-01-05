@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fantasy-ultimate-front:build:production"
+              "buildTarget": "fantasy-ultimate-front:build:production"
             },
             "development": {
-              "browserTarget": "fantasy-ultimate-front:build:development"
+              "buildTarget": "fantasy-ultimate-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fantasy-ultimate-front:build"
+            "buildTarget": "fantasy-ultimate-front:build"
           }
         },
         "test": {

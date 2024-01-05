@@ -1,0 +1,46 @@
+:host{
+  margin-top: 4rem;
+}
+.profile-image{
+  border-radius: 50%;
+  width: 50px;
+  object-fit: cover;
+  height: 50px;
+}
+.name-container{
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  align-items: center;
+}
+.position{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2160eb;
+  border: #2160eb 1px solid;
+  height: 34px;
+  width: 34px;
+  text-transform: uppercase;
+  border-radius: 50%;
+  mat-icon{
+    height: 19px;
+    width: 19px;
+    font-size: 19px;
+    margin-right: 4PX;
+  }
+  .run{
+    height: 24px;
+    width: 24px;
+    font-size: 24px;
+    MARGIN: 0;
+  }
+}
+.player-info{
+  padding-left: 10px;
+}
+.name{
+  padding-bottom: 5px;
+  display: block;
+}

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  readonly formations = [
+    'Vert Stack',
+    'Horizontal Stack',
+    'Hex'
+  ]
   title = 'fantasy-ultimate-front';
 }

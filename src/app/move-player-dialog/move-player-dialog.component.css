@@ -1,0 +1,14 @@
+:host {
+  text-align: center;
+  color: black;
+}
+.mdc-dialog__title{
+  font-size: larger;
+}
+.mdc-dialog__content {
+  color: black;
+}
+.mat-mdc-dialog-content{
+  padding: 0;
+  max-height: unset;
+}

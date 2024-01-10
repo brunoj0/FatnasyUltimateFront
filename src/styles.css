@@ -37,3 +37,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     top: 4rem !important;
   }
 }
+.move-player-dialog{
+  align-self: flex-end;
+  height: 80%;
+}

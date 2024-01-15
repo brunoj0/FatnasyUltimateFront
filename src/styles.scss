@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
+@import 'variables.scss';
+html, body { height: 100%;
+  max-width: $max-app-width;
+  width: 100%;
+  margin: 0 auto
+}
 *{
   box-sizing: border-box;
 }
@@ -10,10 +14,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-mdc-tab-header {
     position: fixed;
     bottom: 0;
-    right: 0;
     z-index: 2;
     background-color: white;
+    max-width: $max-app-width;
     width: 100%;
+    margin: auto;
     height: 4rem;
   }
   .mat-mdc-tab-body-wrapper{
@@ -36,8 +41,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-mdc-table-sticky{
     top: 4rem !important;
   }
+  .mat-mdc-table{
+    box-shadow: unset;
+
+  }
 }
 .move-player-dialog{
   align-self: flex-end;
   height: 80%;
+  width: 100%;
+}
+
+.cdk-overlay-container{
+  left: unset;
+  max-width: $max-app-width;
 }

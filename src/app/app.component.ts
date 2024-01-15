@@ -1,29 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MovePlayerDialogComponent } from './move-player-dialog/move-player-dialog.component';
+import { TeamStore } from './team.store';
+import { Formation } from './models/formation.enum';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss'],
+  providers: [TeamStore]
 })
 export class AppComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.dialog.open(MovePlayerDialogComponent, {
-      width: '100%',
-      maxWidth: '100vw',
-      panelClass: 'move-player-dialog'
-    });
   }
   readonly formations = [
-    'Vert Stack',
-    'Horizontal Stack',
-    'Hex'
+    Formation.VerticalStack,
+    Formation.HorizontalStack,
+    Formation.Hex
   ]
-  formation = new FormControl('Vert Stack', Validators.required);;
+  readonly store = inject(TeamStore);
+
+  formation = new FormControl(this.formations[0], Validators.required);
+
   title = 'fantasy-ultimate-front';
+
+  changeFormation() {
+    this.store.changeFormation(this.formation.value as Formation);
+  }
 }

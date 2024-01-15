@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Move</h1>
 <div mat-dialog-content>
   <p>Select new position for name or keep him in the cutter slot</p>
-  <app-team-grid></app-team-grid>
+  <app-generic-grid-component [displayedColumns]="displayedColumns"
+  [dataSource]="data.players" (rowClicked)="movePlayer($event)"></app-generic-grid-component>
 </div>
 

@@ -1,60 +1,66 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, WritableSignal, computed, signal } from '@angular/core';
+import { Component, Input, OnInit, WritableSignal, computed, effect, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-export interface PeriodicElement {
-  name: string;
-  position: string;
-  points: number;
-  assists: number;
-  profileImage: string;
-}
+import { GenericGridComponentComponent } from '../generic-grid-component/generic-grid-component.component';
+import { PLAYERS } from 'src/mocks/players';
+import { MatDialog } from '@angular/material/dialog';
+import { MovePlayerDialogComponent } from '../move-player-dialog/move-player-dialog.component';
+import { Player } from '../models/player.model';
+import { Subject, map, switchMap, take } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TeamStore } from '../team.store';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 'Hd', name: 'J.Patrzykąt', points: 1, assists: 3, profileImage: '../../assets/profileImages/patrzykat.jpg'},
-  {position: 'Ct', name: 'B.Jamuła', points: 4, assists: 3, profileImage: '../../assets/profileImages/jamula.jpg'},
-  {position: 'Ct', name: 'Ł.Szewczyk', points: 6, assists: 3,  profileImage: '../../assets/profileImages/szewczyk.jpg'},
-  {position: 'Hd', name: 'M.Muszyński', points: 9, assists: 3,  profileImage: '../../assets/profileImages/muszynski.jpg'},
-  {position: 'Ct', name: 'Z.Peplińska', points: 10, assists: 3,  profileImage: '../../assets/profileImages/peplinska.jpg'},
-  {position: 'Ct', name: 'J.Pepliński', points: 12, assists: 3,  profileImage: '../../assets/profileImages/peplinski.jpg'},
-  {position: 'Hd', name: 'S.Muszyńska', points: 14, assists: 3,  profileImage: '../../assets/profileImages/muszynska.jpg'},
-  {position: 'Ct', name: 'A.Krawczyk', points: 15, assists: 3,  profileImage: '../../assets/profileImages/krawczyk.jpg'},
-  {position: 'Ct', name: 'L.Gietki', points: 99, assists: 0,  profileImage: '../../assets/profileImages/gietki.jpg'},
-  {position: 'Ct', name: 'D.Damian', points: 99, assists: 0,  profileImage: '../../assets/profileImages/damian.jpg'},
-  {position: 'Ct', name: 'A.Krawczyk', points: 15, assists: 3,  profileImage: '../../assets/profileImages/krawczyk.jpg'},
-  {position: 'Ct', name: 'A.Krawczyk', points: 15, assists: 3,  profileImage: '../../assets/profileImages/krawczyk.jpg'},
-  {position: 'Hd', name: 'M.Muszyński', points: 9, assists: 3,  profileImage: '../../assets/profileImages/muszynski.jpg'},
-  {position: 'Hd', name: 'M.Muszyński', points: 9, assists: 3,  profileImage: '../../assets/profileImages/muszynski.jpg'},
-  {position: 'Hd', name: 'M.Muszyński', points: 9, assists: 3,  profileImage: '../../assets/profileImages/muszynski.jpg'},
-  {position: 'Hd', name: 'M.Muszyński', points: 9, assists: 3,  profileImage: '../../assets/profileImages/muszynski.jpg'},
-];
 @Component({
   selector: 'app-team-grid',
   templateUrl: './team-grid.component.html',
-  styleUrls: ['./team-grid.component.css'],
+  styleUrls: ['./team-grid.component.scss'],
   standalone: true,
-  imports: [MatTableModule, MatIconModule, CommonModule],
+  imports: [MatTableModule, MatIconModule, CommonModule, GenericGridComponentComponent],
 })
 export class TeamGridComponent {
+  readonly store = inject(TeamStore);
   readonly test = true;
+  players = this.store.playersWithPosition();
+
   @Input()
-    set formation(value: string) {
-      console.log('ss')
-      this.count.set(value)
+  set formation(value: string) {
+    this._formation.set(value)
   }
-  count: WritableSignal<string> = signal('');
+  constructor(public dialog: MatDialog) {
+
+    effect(() => {
+      console.log(`The count is: ${this.store.formation()})`);
+      console.log(`The players is: ${this.store.players()})`);
+    });
+  }
+  ngOnInit(): void {
+  }
+
+  _formation: WritableSignal<string> = signal('');
 
   displayedColumns: string[] = ['position', 'name', 'points', 'assists'];
-  dataSource = computed(() => {
-    if(this.count() === 'Hex') {
-      return ELEMENT_DATA.map(el => ({...el, position:'Hd'}))
-    }else if(this.count() === 'Horizontal Stack'){
-      return ELEMENT_DATA.map((el, index) =>
-      ({...el, position: index < 6 ? 'Hd' : 'Ct' }))
-    }else if(this.count() === 'Vert Stack'){
-      return ELEMENT_DATA.map((el, index) =>
-      ({...el, position: index < 4 ? 'Hd' : 'Ct' }))
-    }
-    return ELEMENT_DATA
-  });
+
+  movePlayer(player: Player) {
+    const dialogRef = this.dialog.open(MovePlayerDialogComponent, {
+      data:
+      {
+        players: this.players.filter(el => el.id !== player.id),
+        playerToMove: player
+      }
+    });
+
+    dialogRef.afterClosed().pipe(take(1)).subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+
+      if (result) {
+        this.store.swapPlayers(player, result);
+      }
+    });
+  }
+
+  rowClicked(player: Player) {
+    console.log(player)
+  }
 }

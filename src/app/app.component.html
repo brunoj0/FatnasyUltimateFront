@@ -19,7 +19,7 @@
     <div class="formation-container">
       <h5>choose formation for your team:</h5>
       <mat-form-field>
-        <mat-select [formControl]="formation" matNativeControl required>
+        <mat-select [formControl]="formation" matNativeControl required (valueChange)="changeFormation()">
           @for(formation of formations; track formation) {
           <mat-option [value]="formation">{{formation}}</mat-option>
           }
@@ -29,7 +29,7 @@
 
     <h4>Players</h4>
     @if (formation.value) {
-      <app-team-grid [formation]="formation.value"></app-team-grid>
+    <app-team-grid [formation]="formation.value"></app-team-grid>
     }
   </mat-tab>
   <mat-tab label="Players">

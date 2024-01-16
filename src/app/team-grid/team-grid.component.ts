@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, WritableSignal, computed, effect, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { GenericGridComponentComponent } from '../generic-grid-component/generic-grid-component.component';
+import { GenericGridComponentComponent } from '../shared/generic-grid-component/generic-grid-component.component';
 import { PLAYERS } from 'src/mocks/players';
 import { MatDialog } from '@angular/material/dialog';
-import { MovePlayerDialogComponent } from '../move-player-dialog/move-player-dialog.component';
-import { Player } from '../models/player.model';
+import { MovePlayerDialogComponent } from '../shared/move-player-dialog/move-player-dialog.component';
+import { Player } from '../core/models/player.model';
 import { Subject, map, switchMap, take } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TeamStore } from '../team.store';
+import { Formation, MAX_HANDLERS_HORIZONTAL_STACK, MAX_HANDLERS_VERTICAL_STACK } from '../core/models/formation.enum';
 
 @Component({
   selector: 'app-team-grid',
@@ -23,10 +24,6 @@ export class TeamGridComponent {
   readonly test = true;
   players = this.store.playersWithPosition();
 
-  @Input()
-  set formation(value: string) {
-    this._formation.set(value)
-  }
   constructor(public dialog: MatDialog) {
 
     effect(() => {
@@ -37,16 +34,18 @@ export class TeamGridComponent {
   ngOnInit(): void {
   }
 
-  _formation: WritableSignal<string> = signal('');
-
   displayedColumns: string[] = ['position', 'name', 'points', 'assists'];
 
   movePlayer(player: Player) {
+    const playerIndex = this.players.map(player => player.id).indexOf(player.id);
     const dialogRef = this.dialog.open(MovePlayerDialogComponent, {
+      maxWidth: '100vw',
+      panelClass: 'move-player-dialog',
       data:
       {
         players: this.players.filter(el => el.id !== player.id),
-        playerToMove: player
+        playerToMove: player,
+        position: this.getPositionForIndex(playerIndex)
       }
     });
 
@@ -62,5 +61,16 @@ export class TeamGridComponent {
 
   rowClicked(player: Player) {
     console.log(player)
+  }
+
+  private getPositionForIndex(index: number): string {
+    if(this.store.formation() === 'Hex') {
+      return 'Handler';
+    } else if (this.store.formation() === Formation.HorizontalStack) {
+      return index < MAX_HANDLERS_HORIZONTAL_STACK ? 'Handler' : 'Cutter';
+    } else if (this.store.formation() === Formation.VerticalStack) {
+      return index < MAX_HANDLERS_VERTICAL_STACK ? 'Handler' : 'Cutter';
+    }
+    return 'Handler';
   }
 }

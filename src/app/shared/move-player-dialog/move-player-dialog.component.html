@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Move</h1>
 <div mat-dialog-content>
-  <p>Select new position for name or keep him in the cutter slot</p>
+  <p>Select new position for <strong>{{data.playerToMove.name}}</strong> or keep him in the <strong>{{data.position}}</strong> slot</p>
   <app-generic-grid-component [displayedColumns]="displayedColumns"
   [dataSource]="data.players" (rowClicked)="movePlayer($event)"></app-generic-grid-component>
 </div>

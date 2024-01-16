@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Inject, inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { TeamGridComponent } from "../team-grid/team-grid.component";
+import { TeamGridComponent } from "../../team-grid/team-grid.component";
 import { GenericGridComponentComponent } from '../generic-grid-component/generic-grid-component.component';
-import { Player } from '../models/player.model';
-import { TeamStore } from '../team.store';
+import { Player } from '../../core/models/player.model';
+import { Formation } from 'src/app/core/models/formation.enum';
 
 @Component({
     selector: 'app-move-player-dialog',
@@ -14,7 +14,7 @@ import { TeamStore } from '../team.store';
     imports: [MatDialogModule, MatFormFieldModule, TeamGridComponent, GenericGridComponentComponent]
 })
 export class MovePlayerDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {players: Player[], playerToMove: Player}, public dialogRef: MatDialogRef<MovePlayerDialogComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {players: Player[], playerToMove: Player, position: Formation}, public dialogRef: MatDialogRef<MovePlayerDialogComponent>) { }
 
   swapPlayersIndex = new EventEmitter<[number, number]>();
 
@@ -22,7 +22,6 @@ export class MovePlayerDialogComponent {
 
   movePlayer(event: Player) {
     console.log(event);
-    // this.swapPlayersIndex.emit(event);
     this.dialogRef.close(event);
   }
 }

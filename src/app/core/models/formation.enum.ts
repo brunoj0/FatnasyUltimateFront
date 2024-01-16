@@ -3,3 +3,8 @@ export enum  Formation {
   VerticalStack = 'Vertical Stack',
   Hex = 'Hex'
 }
+
+
+export const MAX_HANDLERS_VERTICAL_STACK = 4;
+
+export const MAX_HANDLERS_HORIZONTAL_STACK = 6;

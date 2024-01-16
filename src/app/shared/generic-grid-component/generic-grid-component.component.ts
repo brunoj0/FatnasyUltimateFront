@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { Player } from '../models/player.model';
+import { Player } from '../../core/models/player.model';
 
 @Component({
   selector: 'app-generic-grid-component',

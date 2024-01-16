@@ -1,6 +1,6 @@
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { Player } from './models/player.model';
-import { Formation } from './models/formation.enum';
+import { Player } from './core/models/player.model';
+import { Formation, MAX_HANDLERS_HORIZONTAL_STACK, MAX_HANDLERS_VERTICAL_STACK } from './core/models/formation.enum';
 import { PLAYERS } from 'src/mocks/players';
 import { computed } from '@angular/core';
 
@@ -23,10 +23,10 @@ export const TeamStore = signalStore(
         return players().map(el => ({ ...el, position: 'Hd' }))
       } else if (formation() === Formation.HorizontalStack) {
         return players().map((el, index) =>
-          ({ ...el, position: index < 6 ? 'Hd' : 'Ct' }))
+          ({ ...el, position: index < MAX_HANDLERS_HORIZONTAL_STACK ? 'Hd' : 'Ct' }))
       } else if (formation() === Formation.VerticalStack) {
         return players().map((el, index) =>
-          ({ ...el, position: index < 4 ? 'Hd' : 'Ct' }))
+          ({ ...el, position: index < MAX_HANDLERS_VERTICAL_STACK ? 'Hd' : 'Ct' }))
       }
       return players()
     }),

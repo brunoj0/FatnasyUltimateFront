@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TeamStore } from './team.store';
-import { Formation } from './models/formation.enum';
+import { Formation } from './core/models/formation.enum';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   ]
   readonly store = inject(TeamStore);
 
-  formation = new FormControl(this.formations[0], Validators.required);
+  formation = new FormControl(this.store.formation(), Validators.required);
 
   title = 'fantasy-ultimate-front';
 

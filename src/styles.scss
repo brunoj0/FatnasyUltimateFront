@@ -50,6 +50,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   align-self: flex-end;
   height: 80%;
   width: 100%;
+  max-width: unset;
 }
 
 .cdk-overlay-container{

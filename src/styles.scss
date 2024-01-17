@@ -14,9 +14,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 .app-header {
+  flex-direction: column-reverse !important;
+
   .mat-mdc-tab-header {
-    position: fixed;
     bottom: 0;
     z-index: 2;
     background-color: white;
@@ -26,7 +28,9 @@ body {
     height: 4rem;
   }
   .mat-mdc-tab-body-wrapper {
-    overflow: initial;
+    height: 100%;
+    overflow-x: hidden;
+    overflow: auto;
   }
   .mat-mdc-tab-body-content {
     overflow: initial;
@@ -59,7 +63,8 @@ body {
   max-width: unset;
 }
 
-.cdk-overlay-container {
+.mat-mdc-dialog-container {
   left: unset;
-  max-width: $max-app-width;
+  max-width: $max-app-width !important;
+  margin: auto;
 }

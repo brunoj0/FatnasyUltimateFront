@@ -27,10 +27,6 @@
 .position{
   color: #2160eb;
   border: #2160eb 1px solid;
-
-  text-transform: uppercase;
-  border-radius: 50%;
-  font-weight: 500;
   mat-icon{
     height: 19px;
     width: 19px;
@@ -41,7 +37,7 @@
     height: 24px;
     width: 24px;
     font-size: 24px;
-    MARGIN: 0;
+    margin: 0;
   }
 }
 .availability{

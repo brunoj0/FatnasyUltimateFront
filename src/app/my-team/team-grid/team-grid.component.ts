@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, WritableSignal, computed, effect, inject, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { GenericGridComponentComponent } from '../shared/generic-grid-component/generic-grid-component.component';
+import { GenericGridComponentComponent } from '../../shared/generic-grid-component/generic-grid-component.component';
 import { PLAYERS } from 'src/mocks/players';
 import { MatDialog } from '@angular/material/dialog';
-import { MovePlayerDialogComponent } from '../shared/move-player-dialog/move-player-dialog.component';
-import { Player } from '../core/models/player.model';
+import { MovePlayerDialogComponent } from '../../shared/move-player-dialog/move-player-dialog.component';
+import { Player } from '../../core/models/player.model';
 import { Subject, map, switchMap, take } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TeamStore } from '../team.store';
-import { Formation, MAX_HANDLERS_HORIZONTAL_STACK, MAX_HANDLERS_VERTICAL_STACK } from '../core/models/formation.enum';
+import { Formation, MAX_HANDLERS_HORIZONTAL_STACK, MAX_HANDLERS_VERTICAL_STACK } from '../../core/models/formation.enum';
+import { MyTeamPlayer } from '../my-team-player.model';
 
 @Component({
   selector: 'app-team-grid',
@@ -22,21 +23,16 @@ import { Formation, MAX_HANDLERS_HORIZONTAL_STACK, MAX_HANDLERS_VERTICAL_STACK }
 export class TeamGridComponent {
   readonly store = inject(TeamStore);
   readonly test = true;
-  players = this.store.playersWithPosition();
+  players = computed(() => this.store.playersWithPosition().map((player, index) => ({ ...player, name: `${player.firstName[0]}.${player.lastName}` })))();
 
   constructor(public dialog: MatDialog) {
-
-    effect(() => {
-      console.log(`The count is: ${this.store.formation()})`);
-      console.log(`The players is: ${this.store.players()})`);
-    });
   }
   ngOnInit(): void {
   }
 
   displayedColumns: string[] = ['position', 'name', 'points', 'assists'];
 
-  movePlayer(player: Player) {
+  movePlayer(player: MyTeamPlayer) {
     const playerIndex = this.players.map(player => player.id).indexOf(player.id);
     const dialogRef = this.dialog.open(MovePlayerDialogComponent, {
       maxWidth: '100vw',
@@ -50,8 +46,6 @@ export class TeamGridComponent {
     });
 
     dialogRef.afterClosed().pipe(take(1)).subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
 
       if (result) {
         this.store.swapPlayers(player, result);

@@ -1,7 +1,9 @@
 export interface Player {
-  name: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  baseTeam?: string;
   points: number;
   assists: number;
   profileImage: string;
-  id: string;
 }

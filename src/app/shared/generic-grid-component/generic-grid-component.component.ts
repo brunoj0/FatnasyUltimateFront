@@ -17,7 +17,7 @@ export class GenericGridComponentComponent {
 
   @Output() positionClicked = new EventEmitter<Player>();
   @Output() rowClicked = new EventEmitter<Player>();
+  @Output() availabilityClicked = new EventEmitter<Player>();
 
-  _formation: WritableSignal<string> = signal('');
   _players: WritableSignal<Player[]> = signal([]);
 }

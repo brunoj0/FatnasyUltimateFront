@@ -1,0 +1,7 @@
+<h4>Player List</h4>
+
+<mat-form-field class="example-full-width">
+  <mat-label>Search for a player</mat-label>
+  <input matInput [formControl]="playerSearch">
+</mat-form-field>
+<app-generic-grid-component [dataSource]="players" [displayedColumns]="displayedColumns"></app-generic-grid-component>

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { TeamStore } from './team.store';
+import { TeamStore } from './my-team/team-grid/team.store';
 import { Formation } from './core/models/formation.enum';
 
 @Component({

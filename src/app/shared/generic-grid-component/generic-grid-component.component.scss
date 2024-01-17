@@ -14,14 +14,20 @@
   width: fit-content;
   align-items: center;
 }
-.position{
+.action-icon{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #2160eb;
-  border: #2160eb 1px solid;
+  text-transform: uppercase;
+  border-radius: 50%;
+  font-weight: 500;
   height: 34px;
   width: 34px;
+}
+.position{
+  color: #2160eb;
+  border: #2160eb 1px solid;
+
   text-transform: uppercase;
   border-radius: 50%;
   font-weight: 500;
@@ -38,6 +44,11 @@
     MARGIN: 0;
   }
 }
+.availability{
+  color: #06b440;
+  border: #06b440 1px solid;
+}
+
 .player-info{
   padding-left: 10px;
 }

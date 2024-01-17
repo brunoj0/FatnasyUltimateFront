@@ -1,16 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'variables.scss';
-html, body { height: 100%;
+@import "variables.scss";
+html,
+body {
+  height: 100%;
   max-width: $max-app-width;
   width: 100%;
-  margin: 0 auto
+  margin: 0 auto;
 }
-*{
+* {
   box-sizing: border-box;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.app-header{
-
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.app-header {
   .mat-mdc-tab-header {
     position: fixed;
     bottom: 0;
@@ -21,39 +25,41 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin: auto;
     height: 4rem;
   }
-  .mat-mdc-tab-body-wrapper{
+  .mat-mdc-tab-body-wrapper {
     overflow: initial;
   }
-  .mat-mdc-tab-body-content{
+  .mat-mdc-tab-body-content {
     overflow: initial;
   }
-  .mat-mdc-tab-body.mat-mdc-tab-body-active{
+  .mat-mdc-tab-body.mat-mdc-tab-body-active {
     overflow: initial;
   }
-
-  .mat-mdc-tab-body.mat-mdc-tab-body-active{
+  .mat-mdc-tab-body {
     padding-top: 5rem;
-    padding-bottom: 4rem;
   }
-  .mat-mdc-tab:not(.mdc-tab--stacked){
+  app-my-team {
+    .mat-mdc-tab-body.mat-mdc-tab-body-active {
+      padding-bottom: 4rem;
+    }
+  }
+  .mat-mdc-tab:not(.mdc-tab--stacked) {
     height: 4rem;
   }
-  .mat-mdc-table-sticky{
+  .mat-mdc-table-sticky {
     top: 4rem !important;
   }
-  .mat-mdc-table{
+  .mat-mdc-table {
     box-shadow: unset;
-
   }
 }
-.move-player-dialog{
+.move-player-dialog {
   align-self: flex-end;
   height: 80%;
   width: 100%;
   max-width: unset;
 }
 
-.cdk-overlay-container{
+.cdk-overlay-container {
   left: unset;
   max-width: $max-app-width;
 }

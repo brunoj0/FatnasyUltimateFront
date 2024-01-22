@@ -23,6 +23,9 @@
   font-weight: 500;
   height: 34px;
   width: 34px;
+  &:hover{
+    cursor: pointer;;
+  }
 }
 .position{
   color: #2160eb;

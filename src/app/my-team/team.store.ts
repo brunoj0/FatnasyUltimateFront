@@ -7,16 +7,16 @@ import { computed } from '@angular/core';
 type TeamState = {
   players: Player[];
   formation: Formation
+  
 };
 
 const initialState: TeamState = {
-  players: PLAYERS,
+  players: PLAYERS.map(el => ({ ...el, name: `${el.firstName}.${el.lastName}` })),
   formation: Formation.VerticalStack
 };
 
-export const TeamStore = signalStore(
+export const UserTeamStore = signalStore(
   withState(initialState),
-
   withComputed(({ players, formation }) => ({
     playersWithPosition: computed(() => {
       console.log(formation())

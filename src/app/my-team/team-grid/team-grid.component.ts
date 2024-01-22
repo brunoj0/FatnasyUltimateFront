@@ -9,9 +9,10 @@ import { MovePlayerDialogComponent } from '../../shared/move-player-dialog/move-
 import { Player } from '../../core/models/player.model';
 import { Subject, map, switchMap, take } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TeamStore } from '../team.store';
+import { UserTeamStore } from '../team.store';
 import { Formation, MAX_HANDLERS_HORIZONTAL_STACK, MAX_HANDLERS_VERTICAL_STACK } from '../../core/models/formation.enum';
 import { MyTeamPlayer } from '../my-team-player.model';
+import { playerFullNameToShortVersion } from 'src/app/shared/utls';
 
 @Component({
   selector: 'app-team-grid',
@@ -21,9 +22,9 @@ import { MyTeamPlayer } from '../my-team-player.model';
   imports: [MatTableModule, MatIconModule, CommonModule, GenericGridComponentComponent],
 })
 export class TeamGridComponent {
-  readonly store = inject(TeamStore);
+  readonly store = inject(UserTeamStore);
   readonly test = true;
-  players = computed(() => this.store.playersWithPosition().map((player, index) => ({ ...player, name: `${player.firstName[0]}.${player.lastName}` })))();
+  players: MyTeamPlayer[] = computed(() => this.store.playersWithPosition().map(playerFullNameToShortVersion))();
 
   constructor(public dialog: MatDialog) {
   }
@@ -32,7 +33,7 @@ export class TeamGridComponent {
 
   displayedColumns: string[] = ['position', 'name', 'points', 'assists'];
 
-  movePlayer(player: MyTeamPlayer) {
+  movePlayer(player: Player) {
     const playerIndex = this.players.map(player => player.id).indexOf(player.id);
     const dialogRef = this.dialog.open(MovePlayerDialogComponent, {
       maxWidth: '100vw',

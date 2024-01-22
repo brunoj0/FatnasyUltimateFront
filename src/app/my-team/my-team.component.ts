@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FORMATIONS, Formation } from '../core/models/formation.enum';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TeamStore } from './team.store';
+import { UserTeamStore } from './team.store';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -25,7 +25,7 @@ export class MyTeamComponent {
 
   readonly formations = FORMATIONS;
 
-  readonly store = inject(TeamStore);
+  readonly store = inject(UserTeamStore);
 
   formation = new FormControl(this.store.formation(), Validators.required);
 

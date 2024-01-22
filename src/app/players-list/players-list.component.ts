@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PLAYERS } from 'src/mocks/players';
 import { GenericGridComponentComponent } from '../shared/generic-grid-component/generic-grid-component.component';
 import { MatInputModule } from '@angular/material/input';
@@ -6,6 +6,8 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Player } from '../core/models/player.model';
 import { map } from 'rxjs/internal/operators/map';
 import { startWith } from 'rxjs/internal/operators/startWith';
+import { UserTeamStore } from '../my-team/team.store';
+import { playerFullNameToShortVersion } from '../shared/utls';
 
 @Component({
   selector: 'app-players-list',
@@ -18,15 +20,15 @@ export class PlayersListComponent {
   readonly displayedColumns = ['availability','name', 'assists', 'points'];
 
   playerSearch = new FormControl('', {nonNullable: true});
-
+  readonly store = inject(UserTeamStore);
   players = this.playerSearch.valueChanges.pipe(
     map((searchTerm: string) => {
       console.log(searchTerm);
       if (searchTerm === '') {
-        return PLAYERS;
+        return this.store.players();
       }
-      return PLAYERS.filter((player: Player) => player.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      return this.store.players().filter((player: Player) => playerFullNameToShortVersion(player).name.toLowerCase().includes(searchTerm.toLowerCase()));
     }),
-    startWith(PLAYERS),
+    startWith(this.store.players()),
   );
 }

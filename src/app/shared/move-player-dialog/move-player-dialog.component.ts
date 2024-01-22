@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TeamGridComponent } from "../../my-team/team-grid/team-grid.component";

@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "precommit": "pretty-quick --staged",
+    "prepare": "husky install .husky"
   },
   "private": true,
   "dependencies": {
@@ -35,12 +37,15 @@
     "@types/jasmine": "~4.3.0",
     "@types/uuid": "^9.0.7",
     "@types/uuid4": "^2.0.3",
+    "husky": "^9.0.11",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.3.2",
+    "pretty-quick": "^4.0.0",
     "schematics-scss-migrate": "^2.3.17",
     "typescript": "~5.2.2"
   }

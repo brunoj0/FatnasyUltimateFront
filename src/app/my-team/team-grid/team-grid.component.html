@@ -1,6 +1,6 @@
 <app-generic-grid-component
   [displayedColumns]="displayedColumns"
-  [dataSource]="store.playersWithPosition()"
+  [dataSource]="players()"
   (positionClicked)="movePlayer($event)"
   (rowClicked)="rowClicked($event)">
 </app-generic-grid-component>

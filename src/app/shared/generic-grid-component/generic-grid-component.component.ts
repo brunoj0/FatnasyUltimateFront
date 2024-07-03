@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Player } from '../../core/models/player.model';
+import { PlayerAvailability } from 'src/app/core/models/player-availability.enum';
 
 @Component({
   selector: 'app-generic-grid-component',
@@ -18,6 +19,6 @@ export class GenericGridComponentComponent {
   @Output() positionClicked = new EventEmitter<Player>();
   @Output() rowClicked = new EventEmitter<Player>();
   @Output() availabilityClicked = new EventEmitter<Player>();
-
+  availability = PlayerAvailability;
   _players: WritableSignal<Player[]> = signal([]);
 }

@@ -2,11 +2,29 @@
   <ng-container matColumnDef="availability">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element" (click)="availabilityClicked.emit(element)">
-      <span class="action-icon availability">
+      @switch (element.availability) {
+      @case (availability.AVAILABLE) {
+      <span class="action-icon available">
         <mat-icon class="tab-icon">
-         add-circle
+          add-circle
         </mat-icon>
       </span>
+      }
+      @case (availability.TRANSFER) {
+      <span class="action-icon transfer">
+        <mat-icon class="tab-icon">
+          compare_arrows
+        </mat-icon>
+      </span>
+      }
+      @default {
+      <span class="action-icon same-team">
+        <mat-icon class="tab-icon">
+          lock
+        </mat-icon>
+      </span>
+      }
+      }
     </td>
   </ng-container>
   <ng-container matColumnDef="position">
@@ -27,20 +45,21 @@
             </mat-icon>
           </span>
         } -->
-      </span> </td>
+      </span>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <th mat-header-cell *matHeaderCellDef sticky> Name </th>
     <td mat-cell *matCellDef="let element">
       <div class="name-container">
-        <img class="profile-image" [src]="element.profileImage"/>
+        <img class="profile-image" [src]="element.profileImage" />
         <div class="player-info">
           <span class="name">{{element.name}}</span>
           <span>Wrocław Południe</span>
         </div>
       </div>
-       </td>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="points">
@@ -53,7 +72,11 @@
     <td mat-cell *matCellDef="let element"> {{element.assists}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="fpts">
+    <th mat-header-cell *matHeaderCellDef> FPts </th>
+    <td mat-cell *matCellDef="let element"> 2 </td>
+  </ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-    (click)="rowClicked.emit(row)"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClicked.emit(row)"></tr>
 </table>

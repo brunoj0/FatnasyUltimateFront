@@ -1,16 +1,18 @@
-<h4>Team roster</h4>
+<div class="nav-panel">
+  <h4>Team roster</h4>
 
-<div class="formation-container">
-  <h5>choose formation for your team:</h5>
-  <mat-form-field>
-    <mat-select [formControl]="formation" matNativeControl required (valueChange)="changeFormation($event)">
-      @for(formation of formations; track formation) {
-      <mat-option [value]="formation">{{formation}}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+  <div class="formation-container">
+
+    <h5>choose formation for your team:</h5>
+    <mat-form-field>
+      <mat-select [formControl]="formation" matNativeControl required (valueChange)="changeFormation($event)">
+        @for(formation of formations; track formation) {
+        <mat-option [value]="formation">{{formation}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 </div>
-
 @if (formation.value) {
 <app-team-grid></app-team-grid>
 }

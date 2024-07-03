@@ -13,3 +13,9 @@ export const FORMATIONS = [
   Formation.HorizontalStack,
   Formation.Hex
 ];
+
+export enum Position {
+  Handler = 'Hd',
+  Cutter = 'Ct',
+  Flex = 'Fx'
+}

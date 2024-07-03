@@ -1,9 +1,15 @@
-:host{
-  margin-top: 4rem;
+@import "/src/variables.scss";
+:host{  max-width: 100vw;
+  width: 100vw;
+  max-width: $max-app-width;
+  height: 100%;
+  overflow: auto;
+  display: block;
 }
 .profile-image{
   border-radius: 50%;
   width: 50px;
+  min-width: 50px;
   object-fit: cover;
   height: 50px;
 }
@@ -43,9 +49,17 @@
     margin: 0;
   }
 }
-.availability{
+.available{
   color: #06b440;
   border: #06b440 1px solid;
+}
+.transfer{
+  color: #2160eb;
+  border: #2160eb 1px solid;
+}
+.same-team{
+  color: #5F6368;
+  border: #5F6368 1px solid;
 }
 
 .player-info{

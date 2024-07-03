@@ -5,4 +5,14 @@
 }
 h4{
   text-align: center;
+  padding: 1.33em 0;
+  margin: 0;
+}
+.nav-panel{
+  height: 180px;
+}
+app-team-grid{
+  margin-top: 4rem;
+  height: calc(100% - 180px - 4rem);
+  display: block;
 }

@@ -35,7 +35,7 @@ export class PlayersListComponent {
         return players.filter((player: any) => playerFullNameToShortVersion(player).name.toLowerCase().includes(searchTerm.toLowerCase()));
       }),
       startWith(players),
-map((players: Player[]) => players.map(playerFullNameToShortVersion)),
+  map((players: Player[]) => players.map(playerFullNameToShortVersion)),
       tap(data => console.log(data)),
       // shareReplay(1)
     )

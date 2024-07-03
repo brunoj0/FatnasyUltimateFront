@@ -50,6 +50,6 @@
     "typescript": "~5.2.2"
   },
   "lint-staged": {
-    "*.{js,css,md}": "prettier --write"
+    "*.{js,css,md,ts}": "prettier --write"
   }
 }

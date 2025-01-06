@@ -1,0 +1,10 @@
+
+<form [formGroup]="form" (submit)="test($event)">
+
+<input formControlName="username" type="text"  autocomplete="on"/>
+<input formControlName='password' type="password"  autocomplete="on"/>
+<button type="submit">submit</button>
+</form>
+<button *ngIf="view |async" type="button">login</button>
+wxs
+qww

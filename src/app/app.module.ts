@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { TeamGridComponent } from './my-team/team-grid/team-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,12 +12,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MyTeamComponent } from './my-team/my-team.component';
 import { PlayersListComponent } from './players-list/players-list.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import {
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
+import { routes } from './app.routes';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [
-    AppComponent,
+  declarations: [AppComponent],
+  providers: [
+    { provide: MAT_TABS_CONFIG, useValue: { animationDuration: '500ms' } },
   ],
-  providers: [ { provide: MAT_TABS_CONFIG, useValue: { animationDuration: '500ms' } }],
   bootstrap: [AppComponent],
   imports: [
     MatInputModule,
@@ -34,7 +41,9 @@ import { PlayersListComponent } from './players-list/players-list.component';
     ReactiveFormsModule,
     MatFormFieldModule,
     MyTeamComponent,
-    PlayersListComponent
-  ]
+    PlayersListComponent,
+    MainDashboardComponent,
+    RouterModule.forRoot(routes),
+  ],
 })
-export class AppModule { }
+export class AppModule {}

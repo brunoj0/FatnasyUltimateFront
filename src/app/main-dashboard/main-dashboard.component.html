@@ -1,0 +1,39 @@
+<div class="header" >
+  <mat-icon>settings</mat-icon>
+
+  <div>
+    <h4>My team</h4>
+    <h5>Liga Przyjaciół Frisbee</h5>
+  </div>
+  <mat-icon>info</mat-icon>
+<button (click)="test()">test</button>
+</div>
+<mat-tab-group class="app-header" preserveContent>
+  <mat-tab label="My team">
+    <ng-template mat-tab-label>
+      <div class="tab-label">
+        <mat-icon class="tab-icon">groups</mat-icon>
+        <span class="label">My team</span>
+      </div>
+    </ng-template>
+    <app-my-team></app-my-team>
+  </mat-tab>
+  <mat-tab label="Players">
+    <ng-template mat-tab-label>
+      <div class="tab-label">
+        <mat-icon class="tab-icon">person</mat-icon>
+        <span class="label">Players</span>
+      </div>
+    </ng-template>
+    <app-players-list>
+    </app-players-list>
+  </mat-tab>
+  <mat-tab label="League">
+    <ng-template mat-tab-label>
+      <div class="tab-label">
+        <mat-icon class="tab-icon">bookmark</mat-icon>
+        <span class="label">League</span>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

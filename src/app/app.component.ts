@@ -13,5 +13,6 @@ import { addEntities } from '@ngrx/signals/entities';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [LeagueStore],
+  standalone: false,
 })
 export class AppComponent {}

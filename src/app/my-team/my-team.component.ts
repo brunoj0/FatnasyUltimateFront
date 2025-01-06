@@ -1,7 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FORMATIONS, Formation } from '../core/models/formation.enum';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { LeagueStore } from '../core/league.store';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,16 +17,22 @@ import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-my-team',
-  standalone: true,
-  imports: [MatIconModule, FormsModule, MatFormFieldModule,
-    MatInputModule, MatTabsModule, TeamGridComponent, ReactiveFormsModule, MatSelectModule,
+  imports: [
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTabsModule,
+    TeamGridComponent,
+    ReactiveFormsModule,
+    MatSelectModule,
     FormsModule,
   ],
   templateUrl: './my-team.component.html',
-  styleUrl: './my-team.component.scss'
+  styleUrl: './my-team.component.scss',
 })
 export class MyTeamComponent {
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   readonly formations = FORMATIONS;
 

@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output, WritableSignal, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  WritableSignal,
+  signal,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Player } from '../../core/models/player.model';
@@ -7,10 +14,9 @@ import { PlayerAvailability } from 'src/app/core/models/player-availability.enum
 
 @Component({
   selector: 'app-generic-grid-component',
-  standalone: true,
   imports: [MatTableModule, MatIconModule, CommonModule],
   templateUrl: './generic-grid-component.component.html',
-  styleUrl: './generic-grid-component.component.scss'
+  styleUrl: './generic-grid-component.component.scss',
 })
 export class GenericGridComponentComponent {
   @Input() dataSource: any;

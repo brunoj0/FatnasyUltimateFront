@@ -25,7 +25,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-dashboard',
-  standalone: true,
   imports: [
     MatInputModule,
     MatSlideToggleModule,

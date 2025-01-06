@@ -18,7 +18,6 @@ import { MyTeamPlayer } from '../my-team/my-team-player.model';
 
 @Component({
   selector: 'app-players-list',
-  standalone: true,
   imports: [
     GenericGridComponentComponent,
     MatInputModule,

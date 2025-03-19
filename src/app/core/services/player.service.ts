@@ -5,16 +5,19 @@ import { PLAYERS } from 'src/mocks/players';
 import { playerFullNameToShortVersion } from 'src/app/shared/utls';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerService {
-
-  constructor() { }
+  constructor() {}
 
   loadPlayers(): Observable<Player[]> {
     return of(PLAYERS).pipe(
       map((players: Player[]) => players.map(playerFullNameToShortVersion)),
       delay(1000)
     );
+  }
+
+  updatePlayer(player: Player): Observable<Player> {
+    return of(player).pipe(delay(1000));
   }
 }

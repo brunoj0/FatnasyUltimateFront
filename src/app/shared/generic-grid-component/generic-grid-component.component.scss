@@ -1,26 +1,37 @@
 @import "/src/variables.scss";
-:host{  max-width: 100vw;
+:host {
+  max-width: 100vw;
   width: 100vw;
   max-width: $max-app-width;
   height: 100%;
   overflow: auto;
   display: block;
 }
-.profile-image{
+
+.mat-mdc-row {
+  &.clickable {
+    cursor: pointer;
+  }
+  &.not-clickable {
+    cursor: default;
+  }
+}
+
+.profile-image {
   border-radius: 50%;
   width: 50px;
   min-width: 50px;
   object-fit: cover;
   height: 50px;
 }
-.name-container{
+.name-container {
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
   width: fit-content;
   align-items: center;
 }
-.action-icon{
+.action-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,43 +40,49 @@
   font-weight: 500;
   height: 34px;
   width: 34px;
-  &:hover{
-    cursor: pointer;;
-  }
 }
-.position{
+.position {
   color: #2160eb;
   border: #2160eb 1px solid;
-  mat-icon{
+  mat-icon {
     height: 19px;
     width: 19px;
     font-size: 19px;
-    margin-right: 4PX;
+    margin-right: 4px;
   }
-  .run{
+  .run {
     height: 24px;
     width: 24px;
     font-size: 24px;
     margin: 0;
   }
 }
-.available{
+.available {
   color: #06b440;
   border: #06b440 1px solid;
+  &:hover {
+    cursor: pointer;
+  }
 }
-.transfer{
+.transfer {
   color: #2160eb;
   border: #2160eb 1px solid;
+  &:hover {
+    cursor: pointer;
+  }
 }
-.same-team{
-  color: #5F6368;
-  border: #5F6368 1px solid;
+.same-team {
+  color: #5f6368;
+  border: #5f6368 1px solid;
+  &:hover {
+    cursor: default;
+  }
 }
 
-.player-info{
+.player-info {
   padding-left: 10px;
 }
-.name{
+.name {
   padding-bottom: 5px;
   display: block;
 }

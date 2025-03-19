@@ -56,7 +56,7 @@ export class MainDashboardComponent {
     this.route.navigate(['/login'], { skipLocationChange: false });
   }
   ngOnInit(): void {
-    // patchState(this.store, addEntities(PLAYERS, { collection: 'player' }));
+    this.store.loadTeamPlayers();
   }
   readonly formations = [
     Formation.VerticalStack,

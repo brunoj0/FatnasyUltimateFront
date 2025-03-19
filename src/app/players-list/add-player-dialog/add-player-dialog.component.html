@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Add Player to Team</h1>
+<div mat-dialog-content>
+  <div *ngIf="data.availablePositions.length > 0">
+    <h3>Add to empty position</h3>
+    <p>Select an empty position for <strong>{{playerName}}</strong></p>
+    <app-generic-grid-component [displayedColumns]="displayedPositionColumns" [dataSource]="data.availablePositions"
+      (rowClicked)="addPlayerToPosition($event)">
+    </app-generic-grid-component>
+  </div>
+
+  <div *ngIf="data.existingPlayers.length > 0">
+    <h3>Swap with existing player</h3>
+    <p>Or select a player to swap with <strong>{{playerName}}</strong></p>
+    <app-generic-grid-component [displayedColumns]="displayedColumns" [dataSource]="data.existingPlayers"
+      (rowClicked)="swapWithPlayer($event)">
+    </app-generic-grid-component>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+</div>

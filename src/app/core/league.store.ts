@@ -33,22 +33,31 @@ const initialState: TeamState = {
 };
 export const LeagueStore = signalStore(
   { providedIn: 'root' },
-  withState({ ...initialState, players: PLAYERS }),
+  withState({ ...initialState }),
   withEntities({ entity: type<Player>(), collection: 'player' }),
   withEntities({ entity: type<Team>(), collection: 'team' }),
   withComputed(({ playerEntities, userTeamPlayersIds }) => ({
     userTeamPlayer: computed(() => {
+      console.log(userTeamPlayersIds());
+      console.log(playerEntities());
       return userTeamPlayersIds().map((id) =>
-        playerEntities().find((player) => player.id === id)
+        playerEntities().find((player) => {
+          console.log(player);
+          return player.id === id;
+        })
       );
     }),
   })),
   withComputed(({ formation, userTeamId, userTeamPlayer }) => ({
     playersWithPosition: computed(() => {
       console.log(formation(), userTeamId());
-      const teamPlayers = userTeamPlayer().filter(
-        (player) => (player as Player).teamId === userTeamId()
-      );
+      const teamPlayers = userTeamPlayer().filter((player) => {
+        {
+          console.log(player);
+          return player?.teamId === userTeamId();
+        }
+      });
+      if (teamPlayers.length === 0) return [];
       if (formation() === Formation.Hex) {
         return teamPlayers.map((el) => ({ ...el, position: Position.Flex }));
       } else if (formation() === Formation.HorizontalStack) {

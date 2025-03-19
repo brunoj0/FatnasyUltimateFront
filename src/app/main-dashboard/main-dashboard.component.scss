@@ -11,6 +11,9 @@
 mat-tab-group{
   height: 100%;
 }
+mat-tab-body{
+  width: 100vw;
+}
 app-team-grid{
   flex-grow: 1;
 }

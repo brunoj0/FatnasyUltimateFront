@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MyTeamComponent } from '../my-team/my-team.component';
 import { PlayersListComponent } from '../players-list/players-list.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LeagueViewComponent } from '../league-view/league-view.component';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -37,6 +38,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatFormFieldModule,
     MyTeamComponent,
     PlayersListComponent,
+    LeagueViewComponent,
   ],
   templateUrl: './main-dashboard.component.html',
   styleUrl: './main-dashboard.component.scss',
@@ -54,7 +56,7 @@ export class MainDashboardComponent {
     this.route.navigate(['/login'], { skipLocationChange: false });
   }
   ngOnInit(): void {
-    patchState(this.store, addEntities(PLAYERS, { collection: 'player' }));
+    // patchState(this.store, addEntities(PLAYERS, { collection: 'player' }));
   }
   readonly formations = [
     Formation.VerticalStack,

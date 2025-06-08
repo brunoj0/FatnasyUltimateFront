@@ -15,7 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { GenericGridComponentComponent } from '../../shared/generic-grid-component/generic-grid-component.component';
 import { PLAYERS } from 'src/mocks/players';
 import { MatDialog } from '@angular/material/dialog';
-import { MovePlayerDialogComponent } from '../../shared/move-player-dialog/move-player-dialog.component';
+import { MovePlayerDialogComponent } from '../move-player-dialog/move-player-dialog.component';
 import { Player } from '../../core/models/player.model';
 import { take } from 'rxjs';
 import {

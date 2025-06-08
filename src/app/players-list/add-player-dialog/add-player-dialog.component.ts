@@ -16,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-add-player-dialog',
   templateUrl: './add-player-dialog.component.html',
-  styleUrl: './add-player-dialog.component.scss',
   standalone: true,
   imports: [
     MatDialogModule,

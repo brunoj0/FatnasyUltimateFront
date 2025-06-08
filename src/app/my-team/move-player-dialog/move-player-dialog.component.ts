@@ -5,10 +5,10 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { TeamGridComponent } from '../../my-team/team-grid/team-grid.component';
+import { TeamGridComponent } from '../team-grid/team-grid.component';
 import { Player } from '../../core/models/player.model';
 import { Formation } from 'src/app/core/models/formation.enum';
-import { GenericGridComponentComponent } from '../generic-grid-component/generic-grid-component.component';
+import { GenericGridComponentComponent } from '../../shared/generic-grid-component/generic-grid-component.component';
 import { MyTeamPlayer } from 'src/app/my-team/my-team-player.model';
 
 @Component({

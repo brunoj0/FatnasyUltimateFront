@@ -8,10 +8,9 @@ describe('MovePlayerDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MovePlayerDialogComponent]
-    })
-    .compileComponents();
-    
+      imports: [MovePlayerDialogComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(MovePlayerDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

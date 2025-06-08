@@ -1,9 +1,9 @@
 <h4>Player List</h4>
 
 <mat-form-field class="search-for-player">
-    <mat-label>Search for a player</mat-label>
-    <input matInput [formControl]="playerSearch">
+  <mat-label>Search for a player</mat-label>
+  <input matInput [formControl]="playerSearch">
 </mat-form-field>
 <app-generic-grid-component [dataSource]="players | async" [displayedColumns]="displayedColumns"
-    (rowClicked)="onPlayerSelected($event)">
+  (rowClicked)="onPlayerSelected($event)">
 </app-generic-grid-component>

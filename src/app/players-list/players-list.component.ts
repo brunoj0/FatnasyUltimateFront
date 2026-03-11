@@ -44,7 +44,7 @@ export class PlayersListComponent {
   private playerStore = inject(PlayerStore);
   private dialog = inject(MatDialog);
 
-  players = toObservable(this.store.playerWithAvailability).pipe(
+  players$ = toObservable(this.store.playerWithAvailability).pipe(
     switchMap((players) =>
       this.playerSearch.valueChanges.pipe(
         map((searchTerm: string) => {

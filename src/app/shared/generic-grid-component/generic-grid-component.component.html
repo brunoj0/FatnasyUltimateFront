@@ -51,18 +51,38 @@
   </ng-container>
 
   <ng-container matColumnDef="points">
-    <th mat-header-cell *matHeaderCellDef> PTS </th>
+    <th mat-header-cell *matHeaderCellDef matTooltip="Goals scored by the player" matTooltipPosition="above"> PTS </th>
     <td mat-cell *matCellDef="let element"> {{element.points}} </td>
   </ng-container>
 
   <ng-container matColumnDef="assists">
-    <th mat-header-cell *matHeaderCellDef> AST </th>
+    <th mat-header-cell *matHeaderCellDef matTooltip="Assists made by the player" matTooltipPosition="above"> AST </th>
     <td mat-cell *matCellDef="let element"> {{element.assists}} </td>
   </ng-container>
 
   <ng-container matColumnDef="fpts">
-    <th mat-header-cell *matHeaderCellDef> FPts </th>
-    <td mat-cell *matCellDef="let element"> 2 </td>
+    <th mat-header-cell *matHeaderCellDef [matTooltip]="getFantasyPointsTooltip()" matTooltipPosition="above">
+      FPts
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.fantasyPoints}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rank">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="logoName">
+    <th mat-header-cell *matHeaderCellDef> Team </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-template [ngTemplateOutlet]="defaultLogoName" [ngTemplateOutletContext]="{$implicit: element}"></ng-template>
+      <ng-template #defaultLogoName let-element>
+        <div class="team-logo-name">
+          <img [src]="element.logo" alt="logo" class="team-logo" />
+          <span>{{element.name}}</span>
+        </div>
+      </ng-template>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TeamGridComponent } from './team-grid/team-grid.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-my-team',
@@ -27,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatSelectModule,
     FormsModule,
+    MatTooltipModule,
   ],
   templateUrl: './my-team.component.html',
   styleUrl: './my-team.component.scss',

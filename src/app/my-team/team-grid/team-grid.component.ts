@@ -26,6 +26,7 @@ import {
 import { MyTeamPlayer } from '../my-team-player.model';
 import { playerFullNameToShortVersion } from 'src/app/shared/utls';
 import { LeagueStore } from 'src/app/core/league.store';
+import { FantasyPointsService } from '../../core/services/fantasy-points.service';
 
 @Component({
   selector: 'app-team-grid',
@@ -40,11 +41,16 @@ import { LeagueStore } from 'src/app/core/league.store';
 })
 export class TeamGridComponent {
   readonly store = inject(LeagueStore);
-  readonly test = true;
+  private fantasyPointsService = inject(FantasyPointsService);
+
   players: Signal<MyTeamPlayer[]> = computed(() =>
-    (this.store.playersWithPosition() as Player[]).map(
-      playerFullNameToShortVersion
-    )
+    (this.store.playersWithPosition() as Player[]).map((player) => {
+      const playerWithName = playerFullNameToShortVersion(player);
+      return {
+        ...playerWithName,
+        fantasyPoints: this.fantasyPointsService.calculateFantasyPoints(player),
+      };
+    })
   );
 
   constructor(public dialog: MatDialog) {}

@@ -5,7 +5,11 @@
 
     <h5>choose formation for your team:</h5>
     <mat-form-field>
-      <mat-select [formControl]="formation" matNativeControl required (valueChange)="changeFormation($event)">
+      <mat-select [formControl]="formation" matNativeControl required (valueChange)="changeFormation($event)"
+        matTooltip="Formations affect player positions and scoring:
+- Vertical Stack: First 4 players are Handlers (1.5x assists)
+- Horizontal Stack: First 6 players are Handlers (1.5x assists)
+- Hex: All players are Flex (1.25x goals and assists)" matTooltipPosition="above">
         @for(formation of formations; track formation) {
         <mat-option [value]="formation">{{formation}}</mat-option>
         }

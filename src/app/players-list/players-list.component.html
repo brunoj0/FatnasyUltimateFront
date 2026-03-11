@@ -4,6 +4,8 @@
   <mat-label>Search for a player</mat-label>
   <input matInput [formControl]="playerSearch">
 </mat-form-field>
-<app-generic-grid-component [dataSource]="players | async" [displayedColumns]="displayedColumns"
-  (rowClicked)="onPlayerSelected($event)">
-</app-generic-grid-component>
+@if (players$ | async; as players) {
+  <app-generic-grid-component [dataSource]="players" [displayedColumns]="displayedColumns"
+    (rowClicked)="onPlayerSelected($event)">
+  </app-generic-grid-component>
+}

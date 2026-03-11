@@ -24,12 +24,15 @@ import {
 } from 'rxjs/operators';
 import { PlayerService } from './services/player.service';
 import { Player } from './models/player.model';
+import { PlayerStatsWebSocketService } from './services/player-stats-websocket.service';
+import { PlayerStats } from './models/player-stats.model';
 
 // State interface
 interface PlayerState {
   isLoading: boolean;
   error: string | null;
   selectedPlayerId: number | null;
+  isConnected: boolean;
 }
 
 // Initial state
@@ -37,6 +40,7 @@ const initialState: PlayerState = {
   isLoading: false,
   error: null,
   selectedPlayerId: null,
+  isConnected: false,
 };
 
 // Utility functions
@@ -62,12 +66,35 @@ export const PlayerStore = signalStore(
     status: computed(() => ({
       isLoading: store.isLoading(),
       error: store.error(),
+      isConnected: store.isConnected(),
     })),
   })),
 
   // Methods
   withMethods((store) => {
     const playerService = inject(PlayerService);
+    const wsService = inject(PlayerStatsWebSocketService);
+
+    // Subscribe to WebSocket updates
+    wsService.getStats().subscribe((stats: PlayerStats[]) => {
+      const updatedPlayers = store.entities().map((player) => {
+        const playerStats = stats.find((s) => s.playerId === player.id);
+        if (playerStats) {
+          return {
+            ...player,
+            points: playerStats.points,
+            assists: playerStats.assists,
+          };
+        }
+        return player;
+      });
+      patchState(store, setEntities(updatedPlayers));
+    });
+
+    // Subscribe to connection status
+    wsService.getConnectionStatus().subscribe((isConnected) => {
+      patchState(store, { isConnected });
+    });
 
     return {
       loadPlayers: rxMethod<void>(

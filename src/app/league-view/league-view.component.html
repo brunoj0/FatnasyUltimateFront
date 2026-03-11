@@ -1,5 +1,17 @@
-<p>league-view works!</p>
-<div>
-
-  <p>asdasdasdasd</p>
-</div>
+<h4>League Teams</h4>
+@if (leagueTeams().length > 0) {
+  <app-generic-grid-component [dataSource]="leagueTeams()" [displayedColumns]="displayedColumns">
+    @for (col of displayedColumns; track col) {
+      @switch (col) {
+        @case ('logoName') {
+          <ng-template let-element>
+            <div class="team-logo-name">
+              <img [src]="element.logo" alt="logo" class="team-logo" />
+              <span>{{element.name}}</span>
+            </div>
+          </ng-template>
+        }
+      }
+    }
+  </app-generic-grid-component>
+}

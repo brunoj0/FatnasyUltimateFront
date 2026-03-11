@@ -2,7 +2,6 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { TeamService } from '../core/services/team.service';
 import { PLAYERS } from 'src/mocks/players';
 import { GenericGridComponentComponent } from '../shared/generic-grid-component/generic-grid-component.component';
-import { CommonModule } from '@angular/common';
 
 interface LeagueTeamRow {
   rank: number;
@@ -13,7 +12,7 @@ interface LeagueTeamRow {
 
 @Component({
   selector: 'app-league-view',
-  imports: [CommonModule, GenericGridComponentComponent],
+  imports: [GenericGridComponentComponent],
   templateUrl: './league-view.component.html',
   styleUrl: './league-view.component.scss',
 })

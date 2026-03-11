@@ -10,7 +10,7 @@ import { Player } from '../../core/models/player.model';
 import { Formation } from '../../core/models/formation.enum';
 import { MyTeamPlayer } from '../../my-team/my-team-player.model';
 import { playerFullNameToShortVersion } from '../../shared/utls';
-import { CommonModule } from '@angular/common';
+
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -21,7 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
     MatDialogModule,
     MatFormFieldModule,
     GenericGridComponentComponent,
-    CommonModule,
     MatButtonModule,
   ],
 })

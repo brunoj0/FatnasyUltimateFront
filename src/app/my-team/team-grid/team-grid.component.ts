@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
@@ -32,12 +31,7 @@ import { FantasyPointsService } from '../../core/services/fantasy-points.service
   selector: 'app-team-grid',
   templateUrl: './team-grid.component.html',
   styleUrls: ['./team-grid.component.scss'],
-  imports: [
-    MatTableModule,
-    MatIconModule,
-    CommonModule,
-    GenericGridComponentComponent,
-  ],
+  imports: [MatTableModule, MatIconModule, GenericGridComponentComponent],
 })
 export class TeamGridComponent {
   readonly store = inject(LeagueStore);
